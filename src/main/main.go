@@ -5,6 +5,7 @@ import (
   "fmt"
   "io/ioutil"
   "log"
+  "os"
   "net/http"
   "net/url"
   "strings"
@@ -12,11 +13,17 @@ import (
   "golang.org/x/oauth2/facebook"
 )
 
+var AccessToken string
+var VerifyToken string
+var Port string
+var ClientID string
+
+
 var (
   oauthConf = &oauth2.Config{
     ClientID:     "YOUR_CLIENT_ID",
     ClientSecret: "YOUR_CLIENT_SECRET",
-    RedirectURL:  "YOUR_REDIRECT_URL_CALLBACK",
+    RedirectURL:  "https://app3-test48.herokuapp.com/oauth2callback",
     Scopes:       []string{"public_profile"},
     Endpoint:     facebook.Endpoint,
   }
@@ -30,8 +37,9 @@ Logged in with <a href="/login">facebook</a>
 //Проинициализируем ключи Keyfb Keyyandex
 func init() {
 	Port = os.Getenv("PORT")
-	AccessToken = os.Getenv("ACCESS_TOKEN")
-	VerifyToken = os.Getenv("VERIFY_TOKEN")
+	oauthConf.ClientID = os.Getenv("ClientID")
+	//AccessToken = os.Getenv("ACCESS_TOKEN")
+	//VerifyToken = os.Getenv("VERIFY_TOKEN")
 }
 
 
