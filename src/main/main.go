@@ -34,6 +34,10 @@ const htmlIndex = `<html><body>
 Logged in with <a href="/login">facebook</a>
 </body></html>
 `
+const htmlWorking = `<html><body>
+Logged with facebook
+</body></html>
+`
 //Проинициализируем ключи Keyfb Keyyandex
 func init() {
 	Port = os.Getenv("PORT")
@@ -49,6 +53,13 @@ func handleMain(w http.ResponseWriter, r *http.Request) {
   w.WriteHeader(http.StatusOK)
   w.Write([]byte(htmlIndex))
 }
+
+func handleWorking(w http.ResponseWriter, r *http.Request) {
+  w.Header().Set("Content-Type", "text/html; charset=utf-8")
+  w.WriteHeader(http.StatusOK)
+  w.Write([]byte(htmlWorking))
+}
+
 
 func handleFacebookLogin(w http.ResponseWriter, r *http.Request) {
   Url, err := url.Parse(oauthConf.Endpoint.AuthURL)
@@ -100,13 +111,15 @@ func handleFacebookCallback(w http.ResponseWriter, r *http.Request) {
 
   log.Printf("parseResponseBody: %s\n", string(response))
 
-  http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
+  http.Redirect(w, r, "/Working", http.StatusTemporaryRedirect)
 }
 
 func main() {
   http.HandleFunc("/", handleMain)
   http.HandleFunc("/login", handleFacebookLogin)
   http.HandleFunc("/oauth2callback", handleFacebookCallback)
+  http.HandleFunc("/Working", handleWorking)
+
   log.Printf("Started running on Port = %s\n",Port)
   if err := http.ListenAndServe(":"+Port, nil); err != nil {
 	log.Fatal(err)
