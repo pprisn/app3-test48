@@ -1,0 +1,25 @@
+{
+	"version": 0,
+	"dependencies": [
+		{
+			"importpath": "cloud.google.com/go/compute/metadata",
+			"repository": "https://code.googlesource.com/gocloud",
+			"revision": "105f0564f8d67e66e7ea5ecc5a6e46dad440aa09",
+			"branch": "master",
+			"path": "/compute/metadata"
+		},
+		{
+			"importpath": "golang.org/x/net/context/ctxhttp",
+			"repository": "https://go.googlesource.com/net",
+			"revision": "915654e7eabcea33ae277abbecf52f0d8b7a9fdc",
+			"branch": "master",
+			"path": "/context/ctxhttp"
+		},
+		{
+			"importpath": "golang.org/x/oauth2",
+			"repository": "https://go.googlesource.com/oauth2",
+			"revision": "5dab4167f31cbd76b407f1486c86b40748bc5073",
+			"branch": "master"
+		}
+	]
+}
