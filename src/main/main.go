@@ -38,6 +38,7 @@ Logged in with <a href="/login">facebook</a>
 func init() {
 	Port = os.Getenv("PORT")
 	oauthConf.ClientID = os.Getenv("ClientID")
+        oauthConf.ClientSecret = os.Getenv("ClientSecret")	
 	//AccessToken = os.Getenv("ACCESS_TOKEN")
 	//VerifyToken = os.Getenv("VERIFY_TOKEN")
 }
